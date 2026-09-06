@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>nix diffs</title>
+    <link rel="stylesheet" href="__ROOT__static/style.css" />
+    <script defer src="__ROOT__static/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to main content</a>
+    <header>
+      <div class="container header-inner">
+        <a class="brand" href="__ROOT__" aria-label="nix diffs home"
+          ><span class="brand-icon" aria-hidden="true">±</span> <span class="brand-text">nix diffs</span></a
+        >
+      </div>
+    </header>
+    <main id="main" class="container" tabindex="-1">
+      <div id="notice" class="notice" role="alert" hidden></div>
+      <form id="compare-form" class="compare-form__DIFF_CLASS__">
+        <div class="field repo-field">
+          <label for="repo">Repository</label
+          ><select id="repo" required>
+            <option value="">Loading repositories…</option>
+          </select>
+        </div>
+        <div class="field commit-field">
+          <label for="old">From commit</label
+          ><select id="old" required></select>
+          <p id="old-meta" class="commit-secondary"></p>
+        </div>
+        <div class="field commit-field">
+          <label for="new">To commit</label
+          ><select id="new" required></select>
+          <p id="new-meta" class="commit-secondary"></p>
+        </div>
+        <button class="button compare-button" type="submit" __COMPARE_HIDDEN__>
+          Compare <span aria-hidden="true">→</span>
+        </button>
+      </form>
+      <section id="home">
+        <div id="repositories"></div>
+      </section>
+      <section id="comparison" hidden>
+        <div class="workspace">
+          <aside aria-label="Configuration selector">
+            <div id="hosts" class="hosts"></div>
+          </aside>
+          <section
+            id="detail"
+            aria-label="Selected configuration"
+            aria-live="polite"
+          >
+            <div class="empty">Choose a configuration.</div>
+          </section>
+        </div>
+      </section>
+      <noscript
+        ><p class="notice">Enable JavaScript to compare snapshots.</p></noscript
+      >
+    </main>
+    <template id="report-template">
+      <div class="detail-heading">
+        <h2 class="host-title"></h2>
+      </div>
+      <div class="filterbar">
+        <div class="field search-field">
+          <label for="package-search">Find a package</label
+          ><input
+            id="package-search"
+            type="search"
+            placeholder="Search names or versions"
+          />
+        </div>
+      </div>
+      <div class="table-options">
+        <label class="check-label"
+          ><input id="selected-only" type="checkbox" /> Explicitly selected
+          only</label
+        >
+        <div class="host-summary">
+          <span>Closure size <strong class="closure-delta"></strong></span>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col" aria-sort="ascending">
+                <button class="table-sort" data-sort="name">
+                  Package <span aria-hidden="true">↑</span>
+                </button>
+              </th>
+              <th scope="col">Before</th>
+              <th scope="col">After</th>
+              <th scope="col" class="number" aria-sort="none">
+                <button class="table-sort" data-sort="size">
+                  Size change <span aria-hidden="true">↕</span>
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="table-empty empty" hidden></div>
+    </template>
+  </body>
+</html>
